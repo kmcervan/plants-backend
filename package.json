@@ -9,11 +9,11 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh": "heroku run knex migrate:latest -a fitnez",
-    "rollbackh": "heroku run knex migrate:rollback -a fitnez",
-    "databaseh": "heroku pg:psql -a fitnez",
-    "seedh": "heroku run knex seed:run -a fitnez",
-    "deploy": "git push heroku main", 
+    "migrateh": "heroku run knex migrate:latest -a plants-serv",
+    "rollbackh": "heroku run knex migrate:rollback -a plants-serv",
+    "databaseh": "heroku pg:psql -a plants-serv",
+    "seedh": "heroku run knex seed:run -a plants-serv",
+    "deploy": "git push heroku main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {

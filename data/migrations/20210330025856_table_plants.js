@@ -1,11 +1,10 @@
-
 exports.up = function(knex) {
     return knex.schema
         .createTable('users', tbl => {
-            tbl.increments();
+            tbl.increments('userId');
             tbl.string('username', 200).notNullable().unique();
             tbl.string('password', 256).notNullable();
-            tbl.string('phone', 10);
+            tbl.string('phone', 15);
         })
         .createTable('plants', tbl => {
             tbl.increments('plantId');
@@ -14,21 +13,22 @@ exports.up = function(knex) {
             tbl.string('h2oFrequency', 200);
             tbl.binary('image');
             tbl.integer('userId')
-                .unsigned()
-                .references('users.id')
+                .notNullable()
+                .references('userId')
                 .inTable('users')
-                .onDelete('RESTRICT')
+                .onDelete('CASCADE')
                 .onUpdate('CASCADE');
         })
         // .createTable('user_plants', tbl => {
         //     tbl.increments('user_plantId');
-        //     tbl.integer('userId').unsigned().references('users.id').inTable('users').onDelete('RESTRICT').onUpdate('CASCADE');
-        //     tbl.integer('plantId').unsigned().references('plantId').inTable('plants').onDelete('RESTRICT').onUpdate('CASCADE');
+        //     tbl.integer('userId').notNullable().references('userId').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
+        //     tbl.integer('plantId').notNullable().references('plantId').inTable('plants').onDelete('CASCADE').onUpdate('CASCADE');
         // })
 };
 
 exports.down = function(knex) {
     return knex.schema
-    .dropTableIfExists('users')
+    // .dropTableIfExists('user_plants')
     .dropTableIfExists('plants')
+    .dropTableIfExists('users')
 };
