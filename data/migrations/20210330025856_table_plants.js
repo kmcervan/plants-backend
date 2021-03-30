@@ -11,7 +11,7 @@ exports.up = function(knex) {
             tbl.string('nickname', 200).notNullable();
             tbl.string('species', 200);
             tbl.string('h2oFrequency', 200);
-            tbl.binary('image');
+            tbl.string('image');
             tbl.integer('userId')
                 .notNullable()
                 .references('userId')

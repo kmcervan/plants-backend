@@ -10,7 +10,8 @@ module.exports = {
     updatePlant,
     getPlantById,
     addPlant,
-    getUserPlantsBy
+    getUserPlantsBy,
+    getAllPlants
 }
 
 // ------------- Get Users ---------------
@@ -42,7 +43,11 @@ function update(id, changes){
 // PLANTS
 // ------------- Get Plants ---------------
 function getUserPlantsBy(userId){
-    return db('plants').where('userId', userId).orderBy('plantId');
+    return db('plants').where('userId', userId);
+}
+
+function getAllPlants(){
+    return db('plants')
 }
 
 // function getUserPlantsBy(userId){
