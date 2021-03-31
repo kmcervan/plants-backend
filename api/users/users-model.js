@@ -21,29 +21,29 @@ function get(){
 
 // ------------- Get by specified item ---------------
 function getBy(filter){
-    return db('users').where(filter).orderBy('userId');
+    return db('users').where(filter).select('*').orderBy('id');
 }
 
 // ------------- Add User ---------------
 async function add(user){
-    const [id] = await db('users').insert(user, 'userId');
+    const [id] = await db('users').insert(user, 'id');
     return getById(id);
 }
 
 // ------------- Get Userby Id ---------------
 function getById(id){
-    return db('users').where('userId', id).first();
+    return db('users').where('id', id).select('*').first();
 }
 
 // ------------- Update User ---------------
 function update(id, changes){
-    return db('users').where('userId', id).update(changes);
+    return db('users').where('id', id).update(changes);
 }
 
 // PLANTS
 // ------------- Get Plants ---------------
 function getUserPlantsBy(userId){
-    return db('plants').where('userId', userId);
+    return db('plants').where('id', userId).select('*');
 }
 
 function getAllPlants(){
@@ -59,21 +59,21 @@ function getAllPlants(){
 
 // ------------- Add Plants ---------------
 async function addPlant(plant){
-    const [id] = await db('plants').insert(plant, 'plantId');
+    const [id] = await db('plants').insert(plant, 'id');
     return getPlantById(id);
 }
 
 // ------------- Get Plants by Id ---------------
 function getPlantById(id){
-    return db('plants').where('plantId', id).first();
+    return db('plants').where('id', id).select('*').first();
 }
 
 // ------------- Update Plants ---------------
 function updatePlant(id, changes){
-    return db('plants').where('plantId', id).update(changes);
+    return db('plants').where('id', id).update(changes);
 }
 
 // ------------- Delete Plants ---------------
 function removePlant(id){
-    return db('plants').where('plantId', id).del();
+    return db('plants').where('id', id).del();
 }

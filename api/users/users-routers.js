@@ -17,6 +17,7 @@ async function checkUser(req, res, next){
 // -------------- Update User Info ------------- 
 router.get('/:id', checkUser, (req, res) => {
     const id = req.params.id;
+    const body = req.body;
     User.getById(id)
         .then(user => {
             res.status(200).json(user)
