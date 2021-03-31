@@ -5,7 +5,7 @@ const User = require('./users-model');
 
 // -------------- Middleware ---------------
 async function checkUser(req, res, next){
-    const id = req.params.userId;
+    const id = req.params.id;
     const userExists = await User.getById(id)
     if(userExists){
         next()
@@ -15,6 +15,14 @@ async function checkUser(req, res, next){
 }
 
 // -------------- Update User Info ------------- 
+router.get('/:id', checkUser, (req, res) => {
+    const id = req.params.id;
+    User.getById(id)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(error => {error.message})
+})
 
 router.put('/:id', (req, res) => {
     const changes = req.body;
