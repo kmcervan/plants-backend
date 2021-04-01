@@ -12,23 +12,23 @@ exports.up = function(knex) {
             tbl.string('species', 200);
             tbl.string('h2oFrequency', 200);
             tbl.string('image');
-            tbl.integer('userId')
-                .notNullable()
-                .references('id')
-                .inTable('users')
-                .onDelete('CASCADE')
-                .onUpdate('CASCADE');
+            // tbl.integer('userId')
+            //     .notNullable()
+            //     .references('id')
+            //     .inTable('users')
+            //     .onDelete('CASCADE')
+            //     .onUpdate('CASCADE');
         })
-        // .createTable('user_plants', tbl => {
-        //     tbl.increments('user_plantId');
-        //     tbl.integer('userId').notNullable().references('userId').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
-        //     tbl.integer('plantId').notNullable().references('plantId').inTable('plants').onDelete('CASCADE').onUpdate('CASCADE');
-        // })
+        .createTable('user_plants', tbl => {
+            tbl.increments();
+            tbl.integer('userId').notNullable().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
+            tbl.integer('plantId').notNullable().references('id').inTable('plants').onDelete('CASCADE').onUpdate('CASCADE');
+        })
 };
 
 exports.down = function(knex) {
     return knex.schema
-    // .dropTableIfExists('user_plants')
+    .dropTableIfExists('user_plants')
     .dropTableIfExists('plants')
     .dropTableIfExists('users')
 };
