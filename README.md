@@ -1,4 +1,4 @@
-#  Build Week - unit 4 - Water My Plants
+# Water My Plants - backend
 
 ## Base URL
 https://plants-serv.herokuapp.com
